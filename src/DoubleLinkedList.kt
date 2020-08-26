@@ -67,6 +67,7 @@ class DoubleLinkedList{
         var temp=head
         while (temp!=null)
         {
+            //test
             println(temp.data)
             temp=temp.next
         }

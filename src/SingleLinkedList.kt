@@ -73,6 +73,7 @@ class LinkedList{
             {
                 prevCurrent?.next=current.next
                 println("$data deleted from list")
+                size--
                 return
             }
             prevCurrent=current

@@ -1,28 +1,14 @@
-class LinkedList<E>{
+class LinkedList{
 
-    private var head:Node<E>?=null
-    private var tail:Node<E>?=null
+    private var head:Node?=null
+    private var tail:Node?=null
     private var size=0
 
-    private inner class Node<E> constructor(internal var element:E, internal var next:Node<E>?)
-
-  /*  fun addFirst(element:E)
+    private inner class Node constructor(internal var data:Int, internal var next:Node?)
+    fun append(data:Int)
     {
         val oldHead=head
-        val newNode=Node<E>(element,oldHead)
-        head=newNode
-        if(oldHead==null)
-        {
-            tail=newNode
-        }
-        size++
-
-    }*/
-
-    fun append(element:E)
-    {
-        val oldHead=head
-        val newNode=Node<E>(element,next = null)
+        val newNode=Node(data,next = null)
     //This if will execute if there is already no element in linked list
         if(head==null)
         {
@@ -42,15 +28,27 @@ class LinkedList<E>{
             size++
         }
     }
+
+    fun search(data:Int)
+    {
+        var tempHead=head
+        while (tempHead!=null)
+        {
+            if(tempHead.data==data)
+            {
+                println("$data exists in list")
+                return
+            }
+            tempHead=tempHead.next
+        }
+        println("$data does not exist in list")
+        return
+    }
+
     //get the size of entire list
     fun getSize():Int{
         return size
     }
-    //get the first element of list
-    fun getFirst() = head?.element
-
-    //get last element of list
-    fun getLast() = tail?.element
 
     //get all the elements of list
     fun getAll()
@@ -58,31 +56,50 @@ class LinkedList<E>{
        var tempHead=head
        while(tempHead!=null)
         {
-            println(tempHead?.element)
+            println(tempHead?.data)
             tempHead=tempHead?.next
         }
 
     }
-/*    fun addLast(element: E) {
-        val t = tail
-        val newNode = Node<E>(element, null)
-        tail = newNode
-        if (t == null) {
-            head = newNode
-        } else {
-            t.next = newNode
+
+    fun delete(data: Int)
+    {
+        var current=head
+        var  prevCurrent=current
+        while (current!=null)
+        {
+
+            if(current.data==data)
+            {
+                prevCurrent?.next=current.next
+                println("$data deleted from list")
+                return
+            }
+            prevCurrent=current
+            current=current.next
         }
-        size++
-    }*/
+        println("$data does not exist in list")
+        return
+
+    }
+
 }
 
 fun main()
 {
-    var linkedList=LinkedList<Int>()
- linkedList.append(142)
+    var linkedList=LinkedList()
+     linkedList.append(142)
     linkedList.append(152)
     linkedList.append(132)
     linkedList.append(122)
 
+    linkedList.getAll()
+    println(" ")
+
+    linkedList.search(122)
+    println(" ")
+
+    linkedList.delete(122)
+    println(" ")
     linkedList.getAll()
 }
